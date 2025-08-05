@@ -74,7 +74,7 @@ public class Main {
             ShoppingCart cart = shoppingCartService.getByUser(user);
             shoppingCartService.clear(cart);
         } catch (RegistrationException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Incorrect data");
         }
 
     }

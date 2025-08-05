@@ -24,6 +24,10 @@ public class Ticket {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shopping_cart_id")
+    private ShoppingCart shoppingCart;
+
     public Long getId() {
         return id;
     }
@@ -48,12 +52,21 @@ public class Ticket {
         this.user = user;
     }
 
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
     @Override
     public String toString() {
         return "Ticket{"
                 + "id=" + id
                 + ", movieSession=" + movieSession
                 + ", user=" + user
+                + ", shoppingCart=" + shoppingCart
                 + '}';
     }
 }

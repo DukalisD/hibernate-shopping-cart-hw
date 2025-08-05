@@ -24,13 +24,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         Ticket ticket = new Ticket();
         ticket.setUser(user);
         ticket.setMovieSession(movieSession);
-        ticketDao.add(ticket);
         ShoppingCart shoppingCart = shoppingCartDao.getByUser(user)
                 .orElseThrow(() -> new RuntimeException("Can't find cart by user " + user));
-        shoppingCart.getTickets().add(ticket);
+        ticket.setShoppingCart(shoppingCart);
+        ticketDao.add(ticket);
         shoppingCartDao.update(shoppingCart);
     }
-    // проблема в цьому методі, Optional is empty
 
     @Override
     public ShoppingCart getByUser(User user) {
